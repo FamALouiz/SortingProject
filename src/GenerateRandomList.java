@@ -13,13 +13,13 @@ public class GenerateRandomList extends Thread {
     @Override
     public void run() {
         try {
-            GenerateRandomList.generateRandomListTest(n);
+            GenerateRandomList.generateRandomList(n);
         } catch (InterruptedException e) {
             return;
         }
     }
 
-    public static void generateRandomListTest(int n) throws InterruptedException {
+    public static void generateRandomList(int n) throws InterruptedException {
         Random r = new Random();
         for (int i = 0; i < 1000; i++) {
             // Generating 2 random numbers and swapping their positions
