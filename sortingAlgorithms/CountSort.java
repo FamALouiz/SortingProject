@@ -11,7 +11,7 @@ public class CountSort {
             counts[i]++;
     }
 
-    public int[] sort() {
+    public int[] Sort() {
         int[] res = new int[this.size];
         int idx = 0;
         for (int i = 0; i < this.counts.length; i++) {
