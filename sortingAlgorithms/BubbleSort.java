@@ -1,8 +1,6 @@
 package sortingAlgorithms;
 
-import java.util.Arrays;
-
-public class BubbleSort {
+public class BubbleSort implements SortingAlgorithm {
     private int[] toSort;
 
     public BubbleSort(int[] arr) {
@@ -24,10 +22,5 @@ public class BubbleSort {
         int temp = this.toSort[a];
         this.toSort[a] = this.toSort[b];
         this.toSort[b] = temp;
-    }
-
-    public static void main(String[] args) {
-        BubbleSort bs = new BubbleSort(new int[] { 1, 0, 2, 100, -1, 20, -24, 5, 678, 124, 512, 42, 25 });
-        System.out.println(Arrays.toString(bs.Sort()));
     }
 }

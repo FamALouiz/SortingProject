@@ -1,6 +1,6 @@
 package sortingAlgorithms;
 
-public class CountSort {
+public class CountSort implements SortingAlgorithm {
     private int[] counts;
     private int size;
 
