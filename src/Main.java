@@ -6,7 +6,10 @@ import javax.swing.*;
 
 public class Main {
     private final static JFrame frame = new JFrame("Sorting");
+    private static JButton closeBtn;
     private static JButton generateRandomBtn;
+    private static JButton bubbleSortBtn;
+    private static JButton countSortBtn;
     private final static JPanel main = new JPanel();
     private final static GraphicsEnvironment graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
     private final static GraphicsDevice device = graphics.getDefaultScreenDevice();
@@ -25,6 +28,15 @@ public class Main {
 
         // Creating components
         rects = generateSortedList(n);
+        closeBtn = new JButton("Exit");
+        closeBtn.setBounds(10, 10, 100, 50);
+        closeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Exiting");
+                System.exit(Main.frame.getDefaultCloseOperation());
+            }
+        });
         generateRandomBtn = new JButton("Generate random array");
         generateRandomBtn.setBounds(875, 950, 175, 50);
         generateRandomBtn.addActionListener(new ActionListener() {
@@ -37,9 +49,29 @@ public class Main {
             }
 
         });
+        bubbleSortBtn = new JButton("Bubble Sort");
+        bubbleSortBtn.setBounds(10, 110, 100, 50);
+        bubbleSortBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked bubble");
+            }
+        });
+        countSortBtn = new JButton("Count Sort");
+        countSortBtn.setBounds(10, 210, 100, 50);
+        bubbleSortBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked Count");
+            }
+        });
+
         // Adding all the components and initializing the screen
         addComp(rects);
+        frame.add(closeBtn);
         frame.add(generateRandomBtn);
+        frame.add(countSortBtn);
+        frame.add(bubbleSortBtn);
         update();
         init();
     }
