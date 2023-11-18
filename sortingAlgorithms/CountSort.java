@@ -11,7 +11,7 @@ public class CountSort implements SortingAlgorithm {
             counts[i]++;
     }
 
-    public void Sort() {
+    public void Sort() throws InterruptedException {
         int[] res = new int[this.size];
         int idx = 0;
         for (int i = 0; i < this.counts.length; i++) {

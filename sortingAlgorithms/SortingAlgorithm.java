@@ -1,5 +1,5 @@
 package sortingAlgorithms;
 
-public abstract interface SortingAlgorithm {
-    public void Sort();
+public interface SortingAlgorithm {
+    public void Sort() throws InterruptedException;
 }
