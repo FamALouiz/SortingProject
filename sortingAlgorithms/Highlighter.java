@@ -9,6 +9,7 @@ public class Highlighter {
 
     public void highlight(int r) {
         Rect temp = ((Rect) (Main.rects[r]));
+
         // Getting all dimension of random components
         int r1x, r1y, r1w, r1h;
         try {
@@ -19,6 +20,8 @@ public class Highlighter {
         } catch (Exception e) {
             return;
         }
+
+        // Creating new Highlighted rectangles
         Rect highlighted = new Rect(r1x, r1y, r1w, r1h, HIGHLIGHT_COLOR);
         Main.removeRect(r);
         Main.rects[r] = highlighted;
@@ -42,6 +45,7 @@ public class Highlighter {
         } catch (Exception e) {
             return;
         }
+
         // Creating new ones in their place
         Rect temp1 = new Rect(r1x, r2y, r1w, r2h, ((Rect) Main.rects[r2]).getColor());
         Rect temp2 = new Rect(r2x, r1y, r2w, r1h, ((Rect) Main.rects[r1]).getColor());

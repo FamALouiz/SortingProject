@@ -21,12 +21,18 @@ public class BubbleSort extends Highlighter implements SortingAlgorithm {
         for (int i = 0; i < this.size; i++) {
             for (int k = 0; k < this.size - i - 1; k++) {
                 boolean swapped = false;
+
+                // Extracting the old colors of rectangles
                 Color old1 = ((Rect) (Main.rects[k])).getColor();
                 Color old2 = ((Rect) (Main.rects[k + 1])).getColor();
+
+                // Highlighting them in green
                 highlight(k);
                 highlight(k + 1);
                 Thread.sleep(DELAY);
                 if (toSort[k] > toSort[k + 1]) {
+
+                    // Swapping
                     Main.removeRect(k);
                     Main.removeRect(k + 1);
                     swap(k, k + 1);
@@ -37,7 +43,9 @@ public class BubbleSort extends Highlighter implements SortingAlgorithm {
                 Thread.sleep(DELAY);
                 Main.removeRect(k);
                 Main.removeRect(k + 1);
-                Main.rects[k] = new Rect(Main.rects[k], swapped ? old2 : old1);
+                Main.rects[k] = new Rect(Main.rects[k], swapped ? old2 : old1); // If not swapped use their respect
+                                                                                // color else use color from other
+                                                                                // rectangle
                 Main.rects[k + 1] = new Rect(Main.rects[k + 1], swapped ? old1 : old2);
                 Main.addComp(Main.rects);
             }
