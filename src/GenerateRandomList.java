@@ -52,6 +52,10 @@ public class GenerateRandomList extends Thread {
 
             Main.rects[r1] = temp1;
             Main.rects[r2] = temp2;
+
+            int temp = Main.heights[r1];
+            Main.heights[r1] = Main.heights[r2];
+            Main.heights[r2] = temp;
         }
         Main.removeAllRects();
         Main.addComp(Main.rects);

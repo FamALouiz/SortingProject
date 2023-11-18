@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import sortingAlgorithms.BubbleSort;
+import sortingAlgorithms.BubbleSortMachine;
+
 public class Main {
     private final static JFrame frame = new JFrame("Sorting");
     private static JButton closeBtn;
@@ -16,6 +19,7 @@ public class Main {
     public final static int useableWidth = 1920 - 400;
     public final static int useableHeight = 1080 - 300;
     public static Component[] rects;
+    public static int[] heights;
 
     // Main
     public static void main(String[] args) {
@@ -28,6 +32,7 @@ public class Main {
 
         // Creating components
         rects = generateSortedList(n);
+        Main.heights = generateHeights(n);
         closeBtn = new JButton("Exit");
         closeBtn.setBounds(10, 10, 100, 50);
         closeBtn.addActionListener(new ActionListener() {
@@ -46,6 +51,7 @@ public class Main {
                 Thread t1 = new Thread(randomList);
                 t1.start();
                 update();
+                Main.heights = generateHeights(n);
             }
 
         });
@@ -55,8 +61,12 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Clicked bubble");
+                BubbleSortMachine bubbleSort = new BubbleSortMachine();
+                Thread t1 = new Thread(bubbleSort);
+                t1.start();
             }
         });
+
         countSortBtn = new JButton("Count Sort");
         countSortBtn.setBounds(10, 210, 100, 50);
         bubbleSortBtn.addActionListener(new ActionListener() {
@@ -145,5 +155,13 @@ public class Main {
     // Removes a certain component from the main frame
     public static void removeComp(Component c) {
         Main.main.remove(c);
+    }
+
+    public static int[] generateHeights(int n) {
+        int[] res = new int[n];
+        for (int i = 0; i < n; i++) {
+            res[i] = Main.rects[i].getHeight();
+        }
+        return res;
     }
 }
