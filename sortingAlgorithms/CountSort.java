@@ -11,7 +11,7 @@ public class CountSort implements SortingAlgorithm {
             counts[i]++;
     }
 
-    public int[] Sort() {
+    public void Sort() {
         int[] res = new int[this.size];
         int idx = 0;
         for (int i = 0; i < this.counts.length; i++) {
@@ -20,6 +20,5 @@ public class CountSort implements SortingAlgorithm {
                 this.counts[i]--;
             }
         }
-        return res;
     }
 }

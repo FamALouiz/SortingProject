@@ -7,15 +7,8 @@ public class BubbleSort implements SortingAlgorithm {
         this.toSort = arr;
     }
 
-    public int[] Sort() {
-        for (int i = 0; i < toSort.length; i++) {
-            for (int j = 0; j < toSort.length - i - 1; j++) {
-                if (this.toSort[j] > this.toSort[j + 1]) {
-                    swap(j, j + 1);
-                }
-            }
-        }
-        return toSort;
+    public void Sort() {
+
     }
 
     public void swap(int a, int b) {
