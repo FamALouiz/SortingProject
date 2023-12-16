@@ -2,9 +2,15 @@ package src;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.Arrays;
+
 import javax.swing.*;
 
 import sortingAlgorithms.BubbleSortMachine;
+import sortingAlgorithms.CountSort;
+import sortingAlgorithms.CountSortMachine;
 
 public class Main {
     private final static JFrame frame = new JFrame("Sorting");
@@ -17,11 +23,18 @@ public class Main {
     private final static GraphicsDevice device = graphics.getDefaultScreenDevice();
     public final static int useableWidth = 1920 - 400;
     public final static int useableHeight = 1080 - 300;
+    public static Component[] sortedRects;
     public static Component[] rects;
     public static int[] heights;
 
     // Main
     public static void main(String[] args) {
+
+        System.setErr(new PrintStream(new OutputStream() {
+            public void write(int b) {
+            }
+        }));
+
         Main page = new Main();
         page.Start();
     }
@@ -30,7 +43,8 @@ public class Main {
         int n = 78;
 
         // Creating components
-        rects = generateSortedList(n);
+        Main.rects = generateSortedList(n);
+        Main.sortedRects = Main.rects.clone();
         Main.heights = generateHeights(n);
         closeBtn = new JButton("Exit");
         closeBtn.setBounds(10, 10, 100, 50);
@@ -60,18 +74,36 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Clicked bubble");
-                BubbleSortMachine bubbleSort = new BubbleSortMachine();
-                Thread t1 = new Thread(bubbleSort);
+                BubbleSortMachine bubbleSortMachine = new BubbleSortMachine();
+                Thread t1 = new Thread(bubbleSortMachine);
                 t1.start();
+                System.out.println(Arrays.toString(Main.heights));
+                System.out.println("Done");
             }
         });
 
         countSortBtn = new JButton("Count Sort");
         countSortBtn.setBounds(10, 210, 100, 50);
-        bubbleSortBtn.addActionListener(new ActionListener() {
+        countSortBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Clicked Count");
+                CountSortMachine countSortMachine = new CountSortMachine();
+                Thread t1 = new Thread(countSortMachine);
+                t1.start();
+                /*
+                 * SwingWorker<String, Object> sw = new SwingWorker<>() {
+                 * CountSort countSort = new CountSort(Main.heights, Main.rects.length);
+                 * 
+                 * public String doInBackground() throws InterruptedException {
+                 * countSort.Sort();
+                 * return "Done";
+                 * }
+                 * };
+                 * sw.execute();
+                 * System.out.println("Done");
+                 */
+                System.out.println("Done");
             }
         });
 
@@ -136,12 +168,19 @@ public class Main {
     // Removes a certain rectangle
     public static Component removeRect(int r) {
         Component temp = Main.rects[r];
+        Component temp2 = Main.sortedRects[r];
         try {
             Main.main.remove(Main.rects[r]);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return null;
+            return temp;
+        } catch (ArrayIndexOutOfBoundsException e1) {
+            try {
+                Main.main.remove(Main.sortedRects[r]);
+                return temp2;
+            } catch (ArrayIndexOutOfBoundsException e2) {
+                return null;
+            }
         }
-        return temp;
+
     }
 
     // Removes all rectangles
