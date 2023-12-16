@@ -1,8 +1,9 @@
 package sortingAlgorithms;
 
+import java.awt.Color;
+
 import src.Main;
 import src.Rect;
-import java.awt.Color;
 
 public class Highlighter {
     private static final Color HIGHLIGHT_COLOR = Color.GREEN;

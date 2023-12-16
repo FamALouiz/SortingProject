@@ -1,9 +1,9 @@
 package sortingAlgorithms;
 
-import src.Main;
+import java.awt.Color;
 import java.util.Arrays;
 
-import java.awt.Color;
+import src.Main;
 import src.Rect;
 
 public class BubbleSort extends Highlighter implements SortingAlgorithm {
