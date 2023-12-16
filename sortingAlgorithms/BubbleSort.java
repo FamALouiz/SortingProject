@@ -2,6 +2,7 @@ package sortingAlgorithms;
 
 import src.Main;
 import java.util.Arrays;
+
 import java.awt.Color;
 import src.Rect;
 
@@ -9,7 +10,7 @@ public class BubbleSort extends Highlighter implements SortingAlgorithm {
     private int[] toSort;
     private int size;
 
-    private final int DELAY = 3;
+    private final int DELAY = 100;
 
     public BubbleSort(int[] arr) {
         this.toSort = arr;
@@ -50,6 +51,10 @@ public class BubbleSort extends Highlighter implements SortingAlgorithm {
                 Main.addComp(Main.rects);
             }
         }
+        System.out.println(Arrays.toString(this.toSort));
+        Main.removeAllRects();
+        Main.addComp(Main.rects);
+        Main.update();
     }
 
     public void swap(int a, int b) {
